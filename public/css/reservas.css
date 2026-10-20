@@ -1,0 +1,35 @@
+.lista-descripcion { color:var(--texto-secundario); font-size:14px; margin:-8px 0 28px; max-width:78ch; line-height:1.6; }
+.filtros { display:flex; flex-wrap:wrap; align-items:end; gap:16px; padding:22px; background:white; border:1px solid var(--borde); border-radius:16px; box-shadow:var(--sombra-sutil); }
+.filtros label { flex:1; min-width:140px; margin:0; }
+.filtros .busqueda-campo { flex:1.5; min-width:190px; }
+.filtro-acciones { display:flex; gap:8px; }
+.filtro-acciones button { min-height:42px; }
+.lista-herramientas { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:26px 0 18px; font-size:12px; color:var(--texto-secundario); }
+#lista-resumen { font-weight:600; font-size:14px; color:var(--texto-principal); }
+#reserva-lista { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.franja-manana { --meeting-accent:#0876ad; --meeting-ink:#075b86; --meeting-tint:#eaf5ff; }
+.franja-mediodia { --meeting-accent:#b77915; --meeting-ink:#7b4c0d; --meeting-tint:#fff5df; }
+.franja-tarde { --meeting-accent:#14835c; --meeting-ink:#116347; --meeting-tint:#e8f6ee; }
+.reserva-tarjeta { display:flex; flex-direction:column; position:relative; min-width:0; overflow:hidden; padding:24px; background:white; border:1px solid var(--borde); border-radius:16px; box-shadow:0 4px 16px rgba(20,48,70,.05); transition:transform .16s ease-out,box-shadow .16s ease,border-color .16s ease; }
+.reserva-tarjeta::before { content:''; position:absolute; inset:0 0 auto; height:5px; background:var(--meeting-accent); }
+.reunion-tarjeta-cabecera { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin:0 0 24px; }
+.reunion-franja { display:inline-flex; align-self:start; padding:5px 10px; border-radius:6px; background:var(--meeting-tint); color:var(--meeting-ink); font-size:12px; font-weight:600; }
+.reunion-hora { font-size:16px; font-weight:650; color:var(--meeting-ink); font-variant-numeric:tabular-nums; }
+.reserva-informacion { flex:1; min-width:0; }
+.reserva-informacion h3 { font-size:19px; line-height:1.4; font-weight:650; letter-spacing:-.02em; overflow-wrap:anywhere; margin:0 0 12px; }
+.reserva-tarjeta p { color:var(--texto-secundario); font-size:13px; line-height:1.6; }
+.reserva-horario { font-weight:600; }
+.reserva-responsable { margin-top:10px; }
+.reserva-tarjeta .reserva-actividad { margin-top:12px; color:#9f1239; font-size:12px; }
+.reunion-tarjeta-pie { display:flex; justify-content:space-between; align-items:center; gap:12px; padding-top:20px; margin-top:24px; }
+.reserva-tarjeta .reserva-sala { color:var(--meeting-ink); font-weight:600; overflow-wrap:anywhere; }
+.reunion-tarjeta-pie .secundario { min-height:40px; padding:8px 12px; font-size:12px; }
+.reserva-tarjeta:focus-within { border-color:var(--meeting-accent); }
+.paginacion { display:flex; justify-content:flex-end; align-items:center; flex-wrap:wrap; gap:16px; padding:28px 0; }
+.paginacion span { color:var(--texto-secundario); font-size:12px; font-variant-numeric:tabular-nums; }
+#reserva-lista .vacio { grid-column:1/-1; padding:60px 24px; text-align:center; color:var(--texto-secundario); }
+#reserva-lista .vacio strong { display:block; font-size:16px; color:var(--texto-principal); margin-bottom:8px; }
+@media(hover:hover) { .reserva-tarjeta:hover { transform:translateY(-3px); border-color:var(--meeting-accent); box-shadow:0 12px 28px rgba(20,48,70,.10); } }
+@media(max-width:1100px) { #reserva-lista { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:700px) { #reserva-lista { grid-template-columns:minmax(0,1fr); gap:16px; } .reserva-tarjeta { padding:22px; } .filtros { padding:18px; gap:14px; } .filtros label { flex-basis:calc(50% - 14px); min-width:0; } .filtros .busqueda-campo { flex-basis:100%; } .filtro-acciones { width:100%; } .filtro-acciones button { flex:1; min-height:44px; } .reunion-tarjeta-pie .secundario { min-height:44px; } .lista-herramientas { font-size:11px; } .paginacion { justify-content:space-between; gap:8px; } .paginacion .secundario { padding:8px 12px; } }
+@media(prefers-reduced-motion:reduce) { .reserva-tarjeta:hover { transform:none; } }

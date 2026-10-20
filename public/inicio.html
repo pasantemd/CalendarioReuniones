@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006fa6">
+  <title>Salas de reuniones | Apracom</title>
+  <link rel="icon" href="/recursos/favicon-apracom.png" type="image/png">
+  <link rel="stylesheet" href="/css/general.css?v=cards3">
+  <link rel="stylesheet" href="/css/navegacion.css?v=cards3">
+  <link rel="stylesheet" href="/css/inicio-sesion.css">
+  <link rel="stylesheet" href="/css/calendario.css?v=cards3">
+  <link rel="stylesheet" href="/css/reservas.css?v=cards3">
+  <link rel="stylesheet" href="/css/modales.css">
+  <script type="module" src="/js/aplicacion.js"></script>
+</head>
+<body>
+  <main id="ingreso-vista" class="ingreso-layout" hidden>
+    <section class="ingreso-panel">
+      <form id="ingreso-formulario" class="ingreso-formulario">
+        <img class="ingreso-logo" src="/recursos/logo-apracom-color.png" alt="Apracom" width="200" height="200">
+        <h1>Iniciar sesión</h1>
+        <label>Correo corporativo<input type="email" name="correo" autocomplete="username" maxlength="254" required placeholder="nombre@empresa.com" autocapitalize="none" spellcheck="false"></label>
+        <label>Contraseña<input type="password" name="contrasena" autocomplete="current-password" maxlength="200" required></label>
+        <p id="ingreso-error" class="error" role="alert" hidden></p>
+        <button class="principal" type="submit">Ingresar</button>
+      </form>
+    </section>
+  </main>
+
+  <div id="aplicacion-vista" class="aplicacion-layout" hidden>
+    <header class="barra">
+      <div class="barra-interior">
+        <a class="marca" href="/" aria-label="Apracom, inicio"><img src="/recursos/logo-apracom-color.png" alt="Apracom"></a>
+        <nav class="navegacion-pestanas" aria-label="Navegación principal">
+          <button data-vista="calendario" class="navegacion-boton activo" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2"/></svg>Calendario</button>
+          <button data-vista="reservas" class="navegacion-boton"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v4H9zM9 12h6m-6 4h4"/></svg>Reservas</button>
+          <button data-vista="historial" class="navegacion-boton"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2 7M3 5v6h6m3-4v6l4 2"/></svg>Historial</button>
+        </nav>
+        <div class="barra-datos">
+          <span class="zona-horaria">Ecuador (UTC−5)</span>
+          <div class="cuenta"><span id="avatar" class="avatar"></span><div><strong id="usuario-nombre"></strong><small id="usuario-correo"></small></div><button id="salir" class="icono-boton" title="Cerrar sesión" aria-label="Cerrar sesión"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H4v14h5m5-14 7 7-7 7m-5-7h12"/></svg></button></div>
+        </div>
+      </div>
+    </header>
+    <main class="espacio">
+      <header class="pagina-cabecera"><h1 id="pagina-asunto">Calendario de salas</h1><button id="nueva-reserva" class="principal"><span aria-hidden="true">+</span> Nueva reserva</button></header>
+      <div id="mensaje" class="aviso" role="status" hidden></div>
+      <section id="calendario-vista">
+        <div class="calendario-herramientas"><div class="controles-mes"><h2 id="mes-asunto"></h2><button id="anterior-mes" class="icono-boton" aria-label="Mes anterior">‹</button><button id="siguiente-mes" class="icono-boton" aria-label="Mes siguiente">›</button><button id="hoy" class="secundario">Hoy</button></div><label class="etiqueta-en-linea">Sala<select id="calendario-sala"><option value="">Todas las salas</option></select></label></div>
+        <div class="distribucion-calendario"><section class="calendario-panel" aria-label="Calendario mensual"><div class="dias-semana" aria-hidden="true"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div><div id="calendario-cuadricula" class="calendario-cuadricula"></div><div class="calendario-pie">Selecciona un día para ver sus reuniones.</div></section><aside class="agenda-panel"><div class="agenda-encabezado"><h2 id="dia-asunto"></h2><span id="dia-conteo"></span></div><div id="dia-agenda"></div><button id="reservar-dia" class="secundario wide">Reservar este día</button></aside></div>
+        <div class="salas-franja"><h2>Espacios de trabajo</h2><div id="sala-resumen" class="sala-resumen"></div></div>
+      </section>
+      <section id="lista-vista" hidden>
+        <p id="lista-descripcion" class="lista-descripcion"></p>
+        <form id="filtro-formulario" class="filtros">
+          <label class="busqueda-campo">Buscar<input id="filtro-q" type="search" maxlength="160" placeholder="Asunto o responsable" autocomplete="off"></label>
+          <label>Desde<input id="filtro-desde" type="date" required></label>
+          <label>Hasta<input id="filtro-hasta" type="date" required></label>
+          <label>Sala<select id="filtro-sala"><option value="">Todas las salas</option></select></label>
+          <div class="filtro-acciones"><button class="principal" type="submit">Consultar</button><button class="secundario" id="limpiar-filtros" type="button">Limpiar filtros</button></div>
+        </form>
+        <div class="lista-herramientas"><p id="lista-resumen" role="status" aria-live="polite"></p><span>Hora de Ecuador · UTC−5</span></div>
+        <div id="reserva-lista"></div>
+        <nav class="paginacion" aria-label="Páginas de reservas"><button id="lista-anterior" class="secundario">Anterior</button><span id="lista-pagina"></span><button id="lista-siguiente" class="secundario">Siguiente</button></nav>
+      </section>
+    </main>
+  </div>
+  <div id="carga" class="carga" role="status">Cargando calendario…</div>
+  <dialog id="reserva-dialogo" aria-labelledby="reserva-dialogo-asunto"><form id="reserva-formulario"><div class="dialogo-encabezado"><h2 id="reserva-dialogo-asunto">Nueva reserva</h2><button type="button" class="icono-boton cerrar-dialogo" aria-label="Cerrar">×</button></div><input type="hidden" name="id" id="reservaNueva-id"><label>Asunto de la reunión<input name="asunto" required maxlength="160" placeholder="¿Sobre qué van a reunirse?"></label><label>Sala<select name="sala_id" id="reservaNueva-sala" required></select></label><div class="fila-formulario"><label>Fecha<input type="date" name="fecha" required></label><label>Asistentes<input type="number" name="asistentes" min="1" max="500" value="2" required></label></div><div class="fila-formulario"><label>Desde<input type="time" name="inicio" step="60" min="08:00" max="17:00" required value="08:00"></label><label>Hasta<input type="time" name="fin" step="60" min="08:00" max="17:00" required value="09:00"></label></div><small>Horario disponible: de 8:00 a.m. a 5:00 p.m. (08:00 a 17:00) · Hora de Ecuador (UTC−5).</small><label>Notas <span class="atenuado">(opcional)</span><textarea name="notas" maxlength="2000" rows="3" placeholder="Información que deban conocer los asistentes"></textarea></label><p id="reservaNueva-error" class="error" role="alert" hidden></p><div class="dialogo-acciones"><button type="button" class="secundario cerrar-dialogo">Volver</button><button type="submit" id="reservaNueva-enviar-boton" class="principal">Confirmar reserva</button></div></form></dialog>
+  <dialog id="detalle-dialogo" aria-labelledby="detalle-encabezado"><div class="dialogo-encabezado"><h2 id="detalle-encabezado">Detalle de la reserva</h2><button class="icono-boton cerrar-dialogo" aria-label="Cerrar">×</button></div><div id="detalle-contenido"></div><div id="detalle-acciones" class="dialogo-acciones" hidden><button type="button" id="editar-reserva-boton" class="secundario">Editar reunión</button><button type="button" id="mostrar-cancelar-boton" class="peligro">Cancelar reunión</button></div><form id="cancelar-formulario" hidden><label>Motivo de cancelación<textarea name="motivo" maxlength="500" required rows="2" placeholder="Describe brevemente el motivo de la cancelación"></textarea></label><p id="cancelar-error" class="error" role="alert" hidden></p><div class="dialogo-acciones"><button type="button" id="volver-cancelar-boton" class="secundario">Volver</button><button class="peligro" type="submit">Confirmar cancelación</button></div></form></dialog>
+  <dialog id="eliminar-dialogo" aria-labelledby="eliminar-encabezado">
+    <form id="eliminar-formulario">
+      <div class="dialogo-encabezado"><h2 id="eliminar-encabezado">Eliminar mi reunión</h2><button type="button" class="icono-boton cerrar-dialogo" aria-label="Cerrar">×</button></div>
+      <p id="eliminar-reunion-asunto" class="detalle-asunto"></p>
+      <p>Se retirará del calendario y de las reservas. El historial conservará el registro de la eliminación.</p>
+      <p id="eliminar-error" class="error" role="alert" hidden></p>
+      <div class="dialogo-acciones"><button type="button" class="secundario cerrar-dialogo">Volver</button><button type="submit" class="peligro">Eliminar reunión</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

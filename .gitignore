@@ -1,0 +1,13 @@
+node_modules/
+.env
+test-results/
+test-result/
+resultados-pruebas/
+playwright-report/
+.bug-hunter/
+*.log
+ACCESO-ADMIN.txt
+datos-locales/
+*.dump
+*.backup
+*.bak

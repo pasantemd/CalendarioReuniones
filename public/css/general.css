@@ -1,0 +1,334 @@
+/* Paleta, tipografía y estilos base de Apracom */
+
+:root {
+  /* Paleta Corporativa Apracom (Azul Oficial) */
+  --color-marca: #0078ad;
+  --color-marca-hover: #006594;
+  --color-marca-activo: #00537a;
+  --color-marca-sutil: #f0f7fb;
+  --color-marca-claro: #e6f3fa;
+  --color-marca-anillo: rgba(0, 120, 173, 0.2);
+
+
+  /* Superficies Limpias y Neutras */
+  --lienzo: #eef3f8;
+  --superficie: #ffffff;
+  --superficie-sutil: #f7f8f9;
+  --borde: #e2e8f0;
+  --borde-campo: #858f99;
+  --borde-fuerte: #94a3b8;
+
+
+  /* Tipografía */
+  --fuente-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --fuente-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --texto-principal: #0f172a;
+  --texto-secundario: #475569;
+  --texto-atenuado: #566679;
+
+
+  /* Estados Funcionales */
+  --finalizado-fondo: #f1f5f9;
+  --finalizado-texto: #475569;
+  --finalizado-borde: #e2e8f0;
+
+  --error-fondo: #fff1f2;
+  --error-texto: #9f1239;
+  --error-borde: #fecdd3;
+
+
+
+  /* Sombras y Elevaciones */
+  --sombra-sutil: 0 2px 5px rgba(20,48,70,.04);
+  --sombra-tarjeta: 0 4px 16px rgba(20,48,70,.06);
+  --sombra-modal: 0 20px 25px -5px rgba(15, 23, 42, 0.15), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+
+
+  /* Base */
+  font-family: var(--fuente-sans);
+  color: var(--texto-principal);
+  background: var(--lienzo);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--lienzo);
+  color: var(--texto-principal);
+}
+
+h1, h2, h3, p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  border-radius: 8px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-marca);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--color-marca-claro);
+  color: var(--color-marca-activo);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Tipografía */
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--texto-principal);
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--texto-principal);
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--texto-principal);
+}
+
+small {
+  font-size: 12px;
+  color: var(--texto-secundario);
+}
+
+.atenuado {
+  color: var(--texto-atenuado);
+}
+
+/* Botones Principales */
+.principal, .secundario, .peligro {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13.5px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.principal {
+  background: var(--color-marca);
+  color: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+
+.principal:hover:not(:disabled) {
+  background: var(--color-marca-hover);
+  box-shadow: none;
+}
+
+.principal:activo:not(:disabled) {
+  background: var(--color-marca-activo);
+  transform: translateY(0);
+}
+
+.principal span {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.secundario {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  color: var(--texto-principal);
+  box-shadow: var(--sombra-sutil);
+}
+
+.secundario:hover:not(:disabled) {
+  background: #f0f2f4;
+  border-color: var(--borde-fuerte);
+  color: var(--texto-principal);
+}
+
+.peligro {
+  background: var(--superficie);
+  color: var(--error-texto);
+  border: 1px solid var(--error-borde);
+}
+
+.peligro:hover:not(:disabled) {
+  background: var(--error-fondo);
+}
+
+.icono-boton {
+  width: 32px;
+  height: 32px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  color: var(--texto-secundario);
+  font-size: 16px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  box-shadow: var(--sombra-sutil);
+}
+
+.icono-boton:hover:not(:disabled) {
+  background: #f0f2f4;
+  color: var(--color-marca);
+  border-color: var(--color-marca);
+}
+
+.icono-boton svg, .navegacion-boton svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Formularios */
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--texto-secundario);
+}
+
+label .atenuado {
+  font-weight: 400;
+}
+
+input, textarea, select {
+  width: 100%;
+  border: 1px solid var(--borde-campo);
+  background: var(--superficie);
+  color: var(--texto-principal);
+  padding: 9px 12px;
+  min-height: 40px;
+  min-width: 0;
+  font-size: 13.5px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--color-marca);
+  box-shadow: none;
+  outline: 2px solid var(--color-marca);
+  outline-offset: 2px;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--texto-atenuado);
+}
+
+textarea {
+  resize: vertical;
+}
+
+form > label {
+  margin-top: 16px;
+}
+
+form > small {
+  display: block;
+  margin-top: 10px;
+  color: var(--texto-atenuado);
+  font-size: 11.5px;
+}
+
+.fila-formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.error {
+  color: var(--error-texto);
+  background: var(--error-fondo);
+  border: 1px solid var(--error-borde);
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-top: 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.aviso {
+  padding: 12px 18px;
+  background: #f7f8f9;
+  color: var(--color-marca-hover);
+  border: 1px solid var(--color-marca-claro);
+  border-radius: 8px;
+  margin-bottom: 22px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.aviso.error {
+  background: var(--error-fondo);
+  color: var(--error-texto);
+  border-color: var(--error-borde);
+}
+
+.carga {
+  padding: 60px;
+  text-align: center;
+  color: var(--texto-atenuado);
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .principal, .secundario, .peligro, .icono-boton, .navegacion-boton { min-height: 44px; }
+  .icono-boton { min-width:44px; }
+  input, select, textarea { font-size: 16px; }
+}
