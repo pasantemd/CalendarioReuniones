@@ -1,0 +1,105 @@
+.campo-fecha {
+  display: flex;
+  position: relative;
+  min-width: 0;
+}
+.campo-fecha input {
+  padding-right: 48px;
+}
+.campo-fecha input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+.campo-fecha > button {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  bottom: 3px;
+  width: 40px;
+  padding: 0;
+  min-height: 0;
+  border: 0;
+  box-shadow: none;
+  font-size: 22px;
+  background: transparent;
+  color: var(--color-marca-hover);
+}
+.selector-fecha {
+  margin: 0;
+  width: min(340px, calc(100vw - 24px));
+  padding: 16px;
+  border-radius: 16px;
+}
+.selector-fecha::backdrop {
+  background: rgba(15, 23, 42, 0.12);
+}
+.selector-fecha-cabecera {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 78px 32px;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.selector-fecha-cabecera :is(button, select, input) {
+  padding: 6px;
+  min-height: 36px;
+  min-width: 0;
+  font-size: 14px;
+}
+.selector-fecha-cabecera select {
+  text-transform: capitalize;
+}
+.selector-fecha-semana,
+.selector-fecha-dias {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 3px;
+}
+.selector-fecha-semana {
+  text-align: center;
+  font-size: 12px;
+  color: var(--texto-secundario);
+  margin-bottom: 8px;
+}
+.selector-fecha-dias button {
+  padding: 0;
+  min-width: 0;
+  min-height: 38px;
+  border: 0;
+  box-shadow: none;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.selector-fecha-dias .exterior {
+  color: var(--texto-atenuado);
+  background: var(--superficie-sutil);
+}
+.selector-fecha-dias [aria-current='date'] {
+  box-shadow: inset 0 0 0 1px var(--color-marca);
+}
+.selector-fecha-dias .elegido {
+  background: var(--color-marca);
+  color: white;
+}
+.selector-fecha-dias button:hover:not(:disabled) {
+  background: var(--color-marca-claro);
+  color: var(--color-marca-activo);
+}
+.selector-fecha-pie {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 16px;
+}
+.selector-fecha-pie button {
+  padding: 8px 10px;
+  min-height: 40px;
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .selector-fecha-dias button {
+    min-height: 40px;
+  }
+  .selector-fecha-pie button {
+    min-height: 44px;
+  }
+}

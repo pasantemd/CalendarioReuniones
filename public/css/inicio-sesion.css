@@ -1,0 +1,56 @@
+/* Pantalla de inicio de sesión */
+
+.ingreso-layout {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--lienzo);
+}
+
+.ingreso-panel {
+  width: 100%;
+  max-width: 390px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 36px 32px 32px;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.ingreso-formulario {
+  width: 100%;
+}
+
+.ingreso-logo {
+  display: block;
+  height: 60px;
+  width: auto;
+  margin: 0 auto 20px;
+  object-fit: contain;
+  background: transparent;
+}
+
+.ingreso-formulario h1 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--texto-principal);
+  text-align: center;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.ingreso-formulario > label {
+  margin-top: 16px;
+}
+
+.ingreso-formulario input {
+  min-height: 44px;
+}
+
+.ingreso-formulario > .principal {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 22px;
+  font-size: 14px;
+}

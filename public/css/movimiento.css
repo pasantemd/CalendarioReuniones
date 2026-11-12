@@ -1,0 +1,165 @@
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --tiempo-respuesta: 140ms;
+  --tiempo-entrada: 280ms;
+}
+
+.ingreso-panel {
+  border-top: 3px solid var(--color-marca);
+}
+.ingreso-logo {
+  height: 72px;
+  margin-bottom: 28px;
+}
+.pagina-cabecera h1 {
+  line-height: 1.2;
+}
+.reunion-hora {
+  letter-spacing: -0.025em;
+}
+.navegacion-boton {
+  position: relative;
+}
+.navegacion-boton.activo {
+  box-shadow: none;
+}
+.navegacion-boton::after {
+  content: '';
+  position: absolute;
+  inset: auto 12px 0;
+  height: 2px;
+  background: var(--color-marca);
+  transform: scaleX(0);
+  transition: transform 180ms var(--ease-out);
+}
+.navegacion-boton.activo::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ingreso-layout:not([hidden]) .ingreso-panel {
+    animation: entrada-acceso var(--tiempo-entrada) var(--ease-out) both;
+  }
+  .ingreso-layout:not([hidden]) .ingreso-logo {
+    animation: entrada-marca var(--tiempo-entrada) var(--ease-out) 60ms both;
+  }
+  #aplicacion-vista:not([hidden]) .pagina-cabecera,
+  #calendario-vista:not([hidden]),
+  #lista-vista:not([hidden]) {
+    animation: entrada-vista 220ms var(--ease-out) backwards;
+  }
+  .reserva-tarjeta {
+    animation: entrada-vista 240ms var(--ease-out) backwards;
+    transition:
+      transform 160ms var(--ease-out),
+      border-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+  .reserva-tarjeta:nth-child(3n + 2) {
+    animation-delay: 35ms;
+  }
+  .reserva-tarjeta:nth-child(3n) {
+    animation-delay: 60ms;
+  }
+  .principal,
+  .secundario,
+  .peligro,
+  .icono-boton {
+    transition:
+      transform var(--tiempo-respuesta) var(--ease-out),
+      background-color var(--tiempo-respuesta) ease,
+      border-color var(--tiempo-respuesta) ease,
+      color var(--tiempo-respuesta) ease;
+  }
+  :is(.principal, .secundario, .peligro, .icono-boton):active:not(:disabled) {
+    transform: scale(0.97);
+  }
+  .agenda-item {
+    transition:
+      transform 160ms var(--ease-out),
+      background-color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  @supports (transition-behavior: allow-discrete) {
+    dialog {
+      opacity: 0;
+      transform: translateY(12px) scale(0.97);
+      transition:
+        opacity 220ms var(--ease-out),
+        transform 220ms var(--ease-out),
+        display 220ms allow-discrete,
+        overlay 220ms allow-discrete;
+    }
+    dialog[open] {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    dialog::backdrop {
+      opacity: 0;
+      transition:
+        opacity 220ms var(--ease-out),
+        display 220ms allow-discrete,
+        overlay 220ms allow-discrete;
+    }
+    dialog[open]::backdrop {
+      opacity: 1;
+    }
+    @starting-style {
+      dialog[open] {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+      }
+      dialog[open]::backdrop {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .agenda-item:hover {
+    border-color: var(--meeting-accent);
+  }
+}
+
+@keyframes entrada-acceso {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes entrada-marca {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes entrada-vista {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navegacion-boton::after {
+    transition: none;
+  }
+  .agenda-item:hover,
+  .reserva-tarjeta:hover {
+    transform: none;
+  }
+}

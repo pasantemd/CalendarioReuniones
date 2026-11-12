@@ -1,0 +1,88 @@
+.carga {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.carga-inicial {
+  width: min(100%, 480px);
+  text-align: left;
+}
+.carga-inicial img {
+  display: block;
+  height: auto;
+  margin-bottom: 28px;
+}
+.carga-inicial p {
+  margin-bottom: 20px;
+  color: var(--texto-secundario);
+}
+.esqueleto {
+  pointer-events: none;
+}
+.esqueleto-linea {
+  display: block;
+  height: 12px;
+  width: 78%;
+  background: #dce5ed;
+  border-radius: 4px;
+}
+.esqueleto-linea + .esqueleto-linea {
+  margin-top: 18px;
+}
+.esqueleto-linea:nth-child(2) {
+  width: 58%;
+  height: 20px;
+}
+.esqueleto-linea:nth-child(3) {
+  width: 90%;
+}
+.esqueleto-linea:last-child {
+  width: 46%;
+}
+.esqueleto-reserva,
+.esqueleto-inicial,
+.esqueleto-agenda {
+  padding: 24px;
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  min-height: 240px;
+  background: var(--superficie);
+}
+.esqueleto-agenda {
+  padding: 16px;
+  min-height: 148px;
+  margin-top: 14px;
+}
+.esqueleto-calendario {
+  min-height: 104px;
+  padding: 14px 10px;
+  border-right: 1px solid var(--borde);
+  border-bottom: 1px solid var(--borde);
+}
+.esqueleto-calendario:nth-child(7n) {
+  border-right: 0;
+}
+.esqueleto-calendario .esqueleto-linea {
+  width: 24px;
+  height: 24px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .esqueleto-linea {
+    animation: pulso-carga 1400ms ease-in-out infinite alternate;
+  }
+}
+@keyframes pulso-carga {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 600px) {
+  .esqueleto-calendario {
+    min-height: 84px;
+    padding: 10px 4px;
+  }
+}
